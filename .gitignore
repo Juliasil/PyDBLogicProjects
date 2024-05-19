@@ -1,0 +1,15 @@
+
+# Arquivos de configuração
+config.ini
+[MySQL]
+host = localhost
+user = seu_usuario
+password = sua_senha
+export DB_HOST="localhost"
+export DB_USER="seu_usuario"
+export DB_PASSWORD="sua_senha"
+
+
+# Arquivos temporários
+temp/
+estudo_python_mysql/python3student/pyvenv.cfg

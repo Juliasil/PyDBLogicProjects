@@ -1,13 +1,24 @@
 import mysql.connector
 from mysql.connector import Error
+import configparser
+
+def get_database_credentials():
+    config = configparser.ConfigParser()
+    config.read('config.ini')
+    return {
+        'host': config['MySQL']['host'],
+        'user': config['MySQL']['user'],
+        'password': config['MySQL']['password']
+    }
 
 def main():
+    credentials = get_database_credentials()
     try:
         database_connection = mysql.connector.connect(
-            host= "localhost",
+            host= credentials['host'],
             port= 3306,
-            user= "usuario_exemplo",
-            password= "S3nh@_Ex@mpl3_2024",
+            user= credentials['user'],
+            password= credentials['password'],
         )
         cursor = database_connection.cursor()
         
