@@ -12,7 +12,7 @@ while True:
   # Aceitando a conexão
   client_socket, client_address = server_socket.accept()
 
-  print(f"client_socket: {client_socket} | Address: {client_address}")
+  print(f"Conexão estabelecida com {client_address}")
 
   data = client_socket.recv(1024)
 
@@ -20,7 +20,16 @@ while True:
     print(f"Recebido: {data.decode('utf-8')}")
 
     # Criar uma resposta JSON
-    response = json.dumps({ "message": "Hello World, Python" })
+    data = json.dumps({ "message": "Hello World, Python" })
+
+    response = (
+      "HTTP/1.1 200 OK\r\n"
+      "Content-Type: application/json\r\n"
+      f"Content-length: {len(data)}\r\n"
+      "Connection: close\r\n"
+      "\r\n"
+      f"{data}"
+    )
 
     # Enviar a resposta JSON AO CLIENT
 
